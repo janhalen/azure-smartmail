@@ -1,0 +1,36 @@
+---
+# Global configuration
+default: &default
+  DATABASE_PORT: 1433
+  KEY_VAULT_URI: "https://maildroidkeyvault.vault.azure.net"
+  AZURE_KEY_VAULT_CREDENTIAL_RESOURCE: "https://vault.azure.net"
+  SECRET_PATH: "/etc/secret-volume"
+  MODEL_PATH: "/mnt/journalisering/models"
+
+# Development configuration
+dev:
+  <<: *default
+
+  DATABASE_URI: "tcp:maildroiddev.database.windows.net"
+  DATABASE_NAME: "maildroiddev"
+  DATABASE_USER_NAME: "USERNAME_HERE"
+  DATABASE_PASSWORD_VAULT_KEY: "DevReadWriteLoginPassword"
+  DATABASE_PASSWORD: "PASSWORD_HERE"
+  AUDIT_LOG_TABLE_NAME: "auditlog"
+
+prod:
+  <<: *default
+
+  DATABASE_URI: "tcp:maildroidprod.database.windows.net"
+  DATABASE_NAME: "MailDroidProdDB"
+  DATABASE_USER_NAME: "USERNAME_HERE"
+  DATABASE_PASSWORD_VAULT_KEY: "ProdReadWriteLoginPassword"
+
+# Test configuration
+test:
+  <<: *default
+
+  DATABASE_URI: "tcp:maildroidtest.database.windows.net"
+  DATABASE_NAME: "MailDroidTestDB"
+  DATABASE_USER_NAME: "USERNAME_HERE"
+  DATABASE_PASSWORD_VAULT_KEY: "TestReadWriteLoginPassword"
