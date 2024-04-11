@@ -1,1 +1,1 @@
-OS2smartmail
+azure-smartmail
